@@ -1,0 +1,35 @@
+{% extends "index-base.html" %} {% block style %}
+<link rel="stylesheet" href="../static/css/validateOTP.css" />
+{% endblock %} {% block header %}
+<header class="container1">
+  <div class="wrapper">
+    <div class="navbar">
+      <!--Logo-->
+      <div class="navbar__logo">
+        <img src="../static/images/ParlaLogoSlog.png" alt="Parla Logo" />
+        <p>Parla-Chatbot</p>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %} {% block content %}
+<div class="contents">
+  <div class="center">
+    <form method="POST">
+      <img src="../static/images/ParlaLogo.png" alt="Parla Logo" class="logo" />
+      <p class="text1">Enter the OTP that we have sent to your Email</p>
+      <div class="text">
+        <input
+          type="text"
+          name="otp"
+          required="required"
+          class="form-control"
+          placeholder="* * * * * *"
+          aria-label="Username"
+        />
+      </div>
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

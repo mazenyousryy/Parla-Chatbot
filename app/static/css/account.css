@@ -1,0 +1,304 @@
+/*Global Rules*/
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* img {
+  max-width: 100%;
+  width: 100%;
+} */
+
+.container {
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+p {
+    line-height: 40px;
+}
+.pt {
+    background-color: var(--background-color);
+    padding-top: 5%;
+}
+
+.wrapper {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+button {
+    font-family: "Oswald", serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-typing);
+    background-color: var(--btn-color);
+    padding: 1em 2em;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--smooth);
+}
+button:hover {
+    color: var(--primary-color);
+    background-color: var(--btn-hover);
+    transition: var(--smooth);
+}
+
+:root {
+    --background-color: #eafdfc;
+    --primary-color: #e6f1ff;
+    --secondary-color: #82aae3;
+    --primary-typing: #2a3d5e;
+    --secondary-typing: #f9f9f9;
+    --gradient-first-color: #77aae7;
+    --gradient-second-color: #7ad8e5;
+    --btn-color: #e2f0ff;
+    --btn-hover: #7aacf8;
+    --smooth: all 0.3s ease-in;
+    --shadow: 0 7px 29px 0 rgba(100, 100, 111, 0.2);
+}
+
+/*Header*/
+header {
+    background-color: var(--background-color);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px 20px 15px;
+    background-color: var(--background-color);
+}
+
+/*Logo*/
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.navbar__logo img {
+    width: 75px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 8px 0;
+}
+
+.navbar__logo p {
+    font-family: "Red Hat Display", serif;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    color: var(--primary-typing);
+    margin-left: 14px;
+    margin-top: 10px;
+}
+
+/*Menu*/
+.navbar__links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background-color: var(--background-color);
+    /*Ham*/
+    transform: translate(-100%);
+    opacity: 0;
+    z-index: 5;
+    transition: var(--smooth);
+}
+
+.navbar__links.navbar__open {
+    transform: translateX(0);
+    opacity: 1;
+    transition: var(--smooth);
+}
+
+.navbar__link {
+    font-size: 1.35rem;
+    margin: 55px;
+    list-style: none;
+}
+
+.navbar__link a {
+    font-family: "Oswald", serif;
+    color: var(--primary-typing);
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: var(--smooth);
+    padding: 8px 15px;
+}
+
+.navbar__link a:hover {
+    color: var(--secondary-typing);
+    transition: var(--smooth);
+}
+
+.navbar__link:hover {
+    background-color: var(--btn-hover);
+    transition: var(--smooth);
+}
+
+.navbar__btn {
+    font-family: "Oswald", serif;
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin-left: 35px;
+    border: 2px solid var(--secondary-color);
+}
+
+/* icon  */
+.navbar__ham {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: var(--smooth);
+    z-index: 6;
+}
+
+.navbar__icon {
+    width: 45px;
+    height: 6px;
+    background: var(--primary-typing);
+    border-radius: 5px;
+    transition: var(--smooth);
+    position: relative;
+}
+
+.navbar__icon:before,
+.navbar__icon:after {
+    content: "";
+    position: absolute;
+    width: 45px;
+    height: 6px;
+    background: var(--primary-typing);
+    border-radius: 5px;
+    transition: var(--smooth);
+}
+
+.navbar__icon:before {
+    transform: translateY(-12px);
+}
+
+.navbar__icon:after {
+    transform: translateY(12px);
+}
+
+/* icon animation  */
+.open .navbar__icon {
+    transform: translateX(-50px);
+    background: transparent;
+}
+
+.open .navbar__icon:before {
+    transform: rotate(45deg) translate(35px, -35px);
+}
+
+.open .navbar__icon:after {
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+
+@media (min-width: 62em) {
+    .navbar__links {
+        position: initial;
+        transform: translateX(0);
+        opacity: 1;
+        background-color: transparent;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .navbar__link {
+        margin: 0 25px;
+        padding: 15px;
+        background-color: var(--btn-color);
+        border-radius: 10px;
+    }
+    .navbar__link:hover {
+        background-color: var(--btn-hover);
+        color: var(--btn-color);
+    }
+    .navbar__btn {
+        margin-left: 0;
+        border: none;
+    }
+    .navbar__ham {
+        display: none;
+    }
+}
+
+/*--------------------------------------------------------------------------------*/
+
+body {
+    background-color: var(--background-color);
+}
+
+.media img {
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%; /* add a circular border radius to the image */
+    margin-right: 10px; /* add some space between the image and the user name */
+}
+
+.media .media-body {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px; /* adjust font size to your needs */
+}
+
+.content-section {
+    color: var(--primary-typing);
+    background-color: var(--primary-color);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    padding: 50px 75px;
+    width: 600px; /* adjust width to your needs */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.leg {
+    text-align: center;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.center-btn {
+    text-align: center;
+    display: inline-block;
+}
+
+.center-btn1 {
+    text-align: center;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+.border-bottom {
+    border-color: #2a3d5e;
+}

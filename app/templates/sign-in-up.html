@@ -1,0 +1,107 @@
+{% extends "index-base.html" %} {% block style %}
+<link rel="stylesheet" type="text/css" href="../static/css/signlog.css" />
+{% endblock %} {% block header %}
+<!--Header-->
+<header class="container1">
+    <div class="wrapper">
+        <div class="navbar">
+            <!--Logo-->
+            <div class="navbar__logo">
+                <a href="{{url_for('index')}}">
+                    <img src="../static/images/ParlaLogoSlog.png" alt="Parla Logo" />
+                </a>
+                <a href="{{url_for('index')}}" class="index-back"> <p>Parla-Chatbot</p></a>
+            </div>
+            <!--Links-->
+        </div>
+    </div>
+</header>
+{% endblock %} {% block content %}
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form method="POST" action="">
+            <!--CSRF Token-->
+            {{ register.hidden_tag() }}
+            <fieldset class="form-group">
+                <h1 class="border-bottom">Create Account</h1>
+                <div class="form-group">
+                    {{ register.username.label(class="form-control-label") }} {%if
+                    register.username.errors %} {{register.username(class="form-control
+                    form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in register.username.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %} {{ register.username(class="form-control-sm") }} {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ register.email.label(class="form-control-label") }} {% if
+                    register.email.errors %} {{ register.email(class="form-control form-control-sm
+                    is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in register.email.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %} {{ register.email(class="form-control-sm") }} {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ register.password.label(class="form-control-label") }}
+                    {{register.password(class="form-control-sm") }}
+                </div>
+                <div class="form-group">
+                    {{ register.confirmPassword.label(class="form-control-label") }}
+                    {{register.confirmPassword(class="form-control-sm") }}
+                </div>
+            </fieldset>
+            <div class="form-group">{{ register.submit(class="btn btn-outline-info") }}</div>
+            <!-- <input type="text" name="name" placeholder="Name" />
+      <input type="number" name="phone" placeholder="Phone Number" />
+      <input type="email" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
+      <button>SignUp</button> -->
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form method="POST" action="">
+            <h1 class="sign-in">Sign In</h1>
+            <input type="email" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <a href="#">Forgot Your Password</a>
+            <button>Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <img src="../static/images/ParlaLogoSlog.png" alt="Parla Logo" />
+                <p>Already have an account? login from here</p>
+                <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <img
+                    src="../static/images/ParloCanIHelpU.png"
+                    alt="Parlo Can I Help You?"
+                    srcset=""
+                />
+                <p>Don’t have an account? Register here easily</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const signUpButton = document.getElementById("signUp");
+    const signInButton = document.getElementById("signIn");
+    const container = document.getElementById("container");
+
+    signUpButton.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+    });
+    signInButton.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
+{% endblock %}

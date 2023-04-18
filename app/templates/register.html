@@ -1,0 +1,75 @@
+{% extends "index-base.html" %} {% block style %}
+<link rel="stylesheet" href="../static/css/register.css" />
+{% endblock style %} {% block header %}
+<!--Header-->
+<header class="container1">
+    <div class="wrapper">
+        <div class="navbar">
+            <!--Logo-->
+            <div class="navbar__logo">
+                <a href="{{url_for('index')}}">
+                    <img src="../static/images/ParlaLogoSlog.png" alt="Parla Logo" />
+                </a>
+                <a href="{{url_for('index')}}" class="index-back"> <p>Parla-Chatbot</p></a>
+            </div>
+            <!--Links-->
+        </div>
+    </div>
+    <div class="circle"></div>
+</header>
+{% endblock %} {% block content %}
+<div class="container">
+    <form class="form" method="POST">
+        {{ register.csrf_token }}
+        <div class="form__text">Create Account</div>
+
+        <div class="form__group">
+            {%if register.username.errors%} {{ register.username(class="form__input is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in register.username.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %} {{ register.username(class="form__input", id="first name", placeholder="Username") }} {% endif %} {{ register.username.label(class="form__label", for="first
+            name") }}
+        </div>
+
+        <div class="form__group">
+            {% if register.email.errors %} {{ register.email(class="form__input is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in register.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %} {{ register.email(class="form__input", id="email", placeholder="Email") }} {% endif %} {{ register.email.label(class="form__label", for="email") }}
+        </div>
+
+        <div class="form__group">
+            {% if register.password.errors %} {{ register.password(class="form__input is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in register.password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %} {{register.password(class="form__input", placeholder="Password") }} {% endif %} {{ register.password.label(class="form__label") }}
+        </div>
+
+        <div class="form__group">
+            {% if register.confirm_password.errors %} {{ register.confirm_password(class="form__input is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in register.confirm_password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %} {{ register.confirm_password(class="form__input", placeholder="Confirm Password") }} {% endif %} {{ register.confirm_password.label(class="form__label") }}
+        </div>
+        <div class="form__button">{{ register.submit(class="btn btn-outline-info")}}</div>
+    </form>
+    <div class="from__bottom">
+        <div class="sign">Already have an Account?</div>
+        <div class="social">
+            <a href="{{url_for('login')}}" class="social-a">Sign-in</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

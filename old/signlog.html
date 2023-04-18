@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SignUp and Login</title>
+    <link rel="stylesheet" type="text/css" href="css/signlog.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Red+Hat+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--Header-->
+    <header class="container1">
+      <div class="wrapper">
+        <div class="navbar">
+          <!--Logo-->
+          <div class="navbar__logo">
+            <a href="{{url_for('index')}}">
+              <img src="images/ParlaLogoSlog.png" alt="Parla Logo" />
+              <p>Parla-Chatbot</p>
+            </a>
+          </div>
+          <!--Links-->
+        </div>
+      </div>
+    </header>
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form action="">
+          <h1 class="sign-in">Create Account</h1>
+          <input type="text" name="name" placeholder="Name" />
+          <input type="number" name="phone" placeholder="Phone Number" />
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
+          <button>SignUp</button>
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form action="#">
+          <h1 class="sign-in">Sign In</h1>
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
+          <a href="#">Forgot Your Password</a>
+
+          <button>Sign In</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <img src="images/ParlaLogoSlog.png" alt="Parla Logo" />
+            <p>Already have an account? login from here</p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <img
+              src="images/ParloCanIHelpU.png"
+              alt="Parlo Can I Help You?"
+              srcset=""
+            />
+            <p>Don’t have an account? Register here easily</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      const signUpButton = document.getElementById("signUp");
+      const signInButton = document.getElementById("signIn");
+      const container = document.getElementById("container");
+
+      signUpButton.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+      });
+      signInButton.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+      });
+    </script>
+  </body>
+</html>

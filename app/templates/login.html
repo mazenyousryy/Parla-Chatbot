@@ -1,0 +1,61 @@
+{% extends "index-base.html" %} {% block style %}
+<link rel="stylesheet" href="../static/css/register.css" />
+{% endblock style %} {% block header %}
+<!--Header-->
+<header class="container1">
+    <div class="wrapper">
+        <div class="navbar">
+            <!--Logo-->
+            <div class="navbar__logo">
+                <a href="{{url_for('index')}}">
+                    <img src="../static/images/ParlaLogoSlog.png" alt="Parla Logo" />
+                </a>
+                <a href="{{url_for('index')}}" class="index-back"> <p>Parla-Chatbot</p></a>
+            </div>
+            <!--Links-->
+        </div>
+    </div>
+</header>
+<div class="circle"></div>
+{% endblock %} {% block content %}
+<div class="container">
+    <form class="form" method="POST">
+        {{ login.csrf_token }}
+        <div class="form__text">Login</div>
+
+        <div class="form__group">
+            {% if login.email.errors %} {{ login.email(class="form__input is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in login.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %} {{ login.email(class="form__input", id="email", placeholder="Email") }} {% endif %} {{ login.email.label(class="form__label", for="email") }}
+        </div>
+
+        <div class="form__group">
+            {% if login.password.errors %} {{ login.password(class="form__input is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in login.password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %} {{login.password(class="form__input", placeholder="Password") }} {% endif %} {{ login.password.label(class="form__label") }}
+        </div>
+
+        <div class="form__group">{{ login.remember(class="form-check-input") }} {{ login.remember.label(class="form-check-label") }}</div>
+
+        <div class="form__button">{{ login.submit(class="btn btn-outline-info") }}</div>
+
+        <small class="text-muted ml-2">
+            <a href="#" class="forget">Forgot Password?</a>
+        </small>
+    </form>
+    <div class="from__bottom">
+        <div class="sign">Don't have an Account? Create a new Account</div>
+        <div class="social">
+            <a href="{{url_for('sign_up')}}" class="social-a">Sign-Up</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
