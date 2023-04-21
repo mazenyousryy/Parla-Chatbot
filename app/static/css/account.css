@@ -22,6 +22,12 @@ html {
     margin: 0 auto;
 }
 
+.container1 {
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 p {
     line-height: 40px;
 }
@@ -76,7 +82,7 @@ header {
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px 15px 20px 15px;
     background-color: var(--background-color);
@@ -301,4 +307,8 @@ body {
 
 .border-bottom {
     border-color: #2a3d5e;
+}
+
+.resetbtn {
+    width: 100%;
 }

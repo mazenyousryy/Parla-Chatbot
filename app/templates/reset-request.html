@@ -1,0 +1,39 @@
+{% extends "index-base.html" %} {% block style %}
+<link rel="stylesheet" href="../static/css/account.css" />
+{% endblock %}{% block header %}
+<!--Header-->
+<header class="container1">
+    <div class="wrapper">
+        <div class="navbar">
+            <!--Logo-->
+            <div class="navbar__logo">
+                <a href="{{url_for('index')}}">
+                    <img src="../static/images/ParlaLogoSlog.png" alt="Parla Logo" />
+                </a>
+                <a href="{{url_for('index')}}" class="index-back"> <p>Parla-Chatbot</p></a>
+            </div>
+            <!--Links-->
+        </div>
+    </div>
+</header>
+<div class="circle"></div>
+{% endblock %} {% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4" style="text-align: center">Reset Password</legend>
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }} {% if form.email.errors %} {{ form.email(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %} {{ form.email(class="form-control form-control-lg") }} {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">{{ form.submit(class="btn btn-outline-info resetbtn") }}</div>
+    </form>
+</div>
+{% endblock content %}
