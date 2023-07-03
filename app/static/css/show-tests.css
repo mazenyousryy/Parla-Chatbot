@@ -1,0 +1,67 @@
+* {
+    --background-color: #eafdfc;
+    --primary-color: #e6f1ff;
+    --secondary-color: #82aae3;
+    --primary-typing: #2a3d5e;
+    --secondary-typing: #f9f9f9;
+    --gradient-first-color: #77aae7;
+    --gradient-second-color: #7ad8e5;
+    --btn-color: #e2f0ff;
+    --btn-hover: #7aacf8;
+    --smooth: all 0.3s ease-in;
+    --shadow: 0 7px 29px 0 rgba(100, 100, 111, 0.2);
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+#highScoresList {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 4rem;
+}
+
+.high-score {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.high-score:hover {
+    transform: scale(1.025);
+}

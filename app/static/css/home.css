@@ -23,7 +23,7 @@ html {
 }
 
 p {
-    line-height: 40px;
+    line-height: 40px !important;
 }
 .pt {
     background-color: var(--background-color);
@@ -313,7 +313,7 @@ header {
         background-image: linear-gradient(to left, var(--gradient-first-color), var(--gradient-second-color));
         clip-path: circle(850px at left 500px);
         /* height: 93%; */
-        z-index: 0;
+        z-index: -999;
     }
 
     #banner .container {

@@ -127,3 +127,19 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset-token.html', title='Reset Password', form=form)
+
+@app.route("/test_yourself", methods=["GET","POST"])
+def test_yourself():
+    return render_template('test-yourself.html',title="Test Yourself")
+
+@app.route("/test_yourself/test", methods=["GET","POST"])
+def test_Q():
+    return render_template('testQ.html',title="Test Yourself")
+
+@app.route("/test_yourself/score", methods=["GET", "POST"])
+def score():
+    return render_template('score.html',title="Score")
+
+@app.route("/test_yourself/tests", methods=["GET", "POST"])
+def tests():
+    return render_template('showTests.html',title="Test")

@@ -1,0 +1,90 @@
+:root {
+    --background-color: #eafdfc;
+    --primary-color: #e6f1ff;
+    --secondary-color: #82aae3;
+    --primary-typing: #2a3d5e;
+    --secondary-typing: #f9f9f9;
+    --gradient-first-color: #77aae7;
+    --gradient-second-color: #7ad8e5;
+    --btn-color: #e2f0ff;
+    --btn-hover: #7aacf8;
+    --smooth: all 0.3s ease-in;
+    --shadow: 0 7px 29px 0 rgba(100, 100, 111, 0.2);
+}
+
+.container3 {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.choice-container {
+    display: flex;
+    margin-bottom: 1rem;
+    width: 100%;
+    font-size: 1.3rem;
+    border: 0.1rem solid rgb(86, 165, 235, 0.25);
+    background-color: white;
+}
+
+.choice-container:hover {
+    cursor: pointer;
+    box-shadow: 0 0.1rem 1rem 0 var(--secondary-color);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+}
+
+.choice-prefix {
+    padding: 1rem 2.5rem;
+    background-color: #56a5eb;
+    color: white;
+}
+
+.choice-text {
+    padding: 1rem;
+}
+
+.correct {
+    background-color: var(--gradient-second-color);
+}
+
+.incorrect {
+    background-color: var(--gradient-second-color);
+}
+
+/* HUD */
+
+#hud {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hud-prefix {
+    display: none;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.hud-main-text {
+    display: none;
+    text-align: center;
+}
+
+#progressBar {
+    display: none;
+    width: 20rem;
+    height: 4rem;
+    border: 0.3rem solid #56a5eb;
+    margin-top: 1.5rem;
+}
+
+#progressBarFull {
+    display: none;
+    height: 3.4rem;
+    background-color: #56a5eb;
+    width: 0%;
+}

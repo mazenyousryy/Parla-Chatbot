@@ -1,5 +1,6 @@
 {% extends "index-base.html" %} {% block style %}
 <link rel="stylesheet" href="../static/css/home.css" />
+<link rel="stylesheet" href="../static/css/testyourself.css" />
 {% endblock %} {% block header %}
 <header class="container" id="top">
     <div class="wrapper">
@@ -7,7 +8,7 @@
             <!--Logo-->
             <div class="navbar__logo">
                 <img src="../static/images/ParlaLogo.png" alt="Parla Logo" />
-                <p>Parla-Chatbot</p>
+                <a href="{{url_for('home')}}"><p>Parla-Chatbot</p></a>
             </div>
             <!--Links-->
             <ul class="navbar__links">
@@ -23,19 +24,18 @@
             </div>
         </div>
     </div>
+    <div class="circle"></div>
 </header>
 {% endblock %} {% block content %}
-<section id="banner">
-    <div class="container">
-        <img src="../static/images/ParloHello.png" alt="Parlo Hello" class="banner_img" />
-        <div class="banner__desc">
-            <img src="../static/images/ParlaLogo.png" alt="Parlo Logo" class="banner__img" />
-            <div class="banner__btn">
-                <a href="#contact"><button>Ask Parlo</button></a>
-                <a href="{{url_for('test_yourself')}}"><button>Test Yourself</button></a>
-            </div>
-            <p class="banner__detail">“Being able to be your true self is one of the strongest components of good mental health.” -Lauren Fogel Mersy</p>
+
+<div class="container2">
+    <div class="banner__desc">
+        <img src="../static/images/ParloQA.png" alt="Parlo Hello" class="banner_img" />
+        <div id="home" class="flex-center flex-column">
+            <h1>Test Your Mental Health Status</h1>
+            <a class="btn" href="{{url_for('test_Q')}}">Start New Test</a>
+            <a class="btn" href="/highscores.html">Previous Tests</a>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}
