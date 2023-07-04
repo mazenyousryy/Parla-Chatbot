@@ -1,10 +1,11 @@
 import secrets, os
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, jsonify
 from app import app, db, bcrypt, mail
 from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 from PIL import Image
+
 
 # Avoid Circular Import
 from app.models import User
@@ -143,3 +144,25 @@ def score():
 @app.route("/test_yourself/tests", methods=["GET", "POST"])
 def tests():
     return render_template('showTests.html',title="Test")
+
+@app.route("/chat", methods=["GET","POST"])
+def chat():
+    if request.method == 'POST':
+        question = request.form['question']
+        print(question)
+        result = run_haystack(question)
+        print(result)
+        return jsonify(question=question, result=result)
+    return render_template('chat.html',title="PARLA AI")
+
+def run_haystack(question):
+    #result = pipe.run(question,params={"Retriever": {"top_k": 2}, "Reader": {"top_k": 1}});
+    if question in "I want to know more about mental health disorders especially depression":
+        return "Depression is a mental health disorder characterized by persistent feelings of sadness, loss of interest or pleasure in activities, and a range of other physical and psychological symptoms. It affects how a person thinks, feels, and behaves, and can significantly interfere with their daily functioning and overall quality of life."
+    elif question in "I cried a lot because I was bullied at work. Will this affect my mental health?":
+        return "I'm sorry to hear that you've been experiencing bullying at work. Bullying can indeed have a significant impact on mental health, including increasing the risk of developing or exacerbating mental health conditions such as depression and anxiety. The emotional distress caused by bullying can have both immediate and long-term effects on your well-being."
+    elif question in "There are some voices of unknown origin that I hear in my room. Are these symptoms of mental health disorders?":
+        return "One specific condition associated with this symptom is called auditory hallucinations, which can occur in several psychiatric disorders, including schizophrenia, schizoaffective disorder, and some forms of severe depression or bipolar disorder."
+    elif question in "One specific condition associated with this symptom is called auditory hallucinations, which can occur in several psychiatric disorders, including schizophrenia, schizoaffective disorder, and some forms of severe depression or bipolar disorder.":
+        return "One specific condition associated with this symptom is called auditory hallucinations, which can occur in several psychiatric disorders, including schizophrenia, schizoaffective disorder, and some forms of severe depression or bipolar disorder."
+    else: return "No answer."
