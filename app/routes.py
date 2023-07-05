@@ -5,10 +5,32 @@ from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestRes
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 from PIL import Image
+from haystack.nodes import FARMReader,BM25Retriever
+from haystack.document_stores import ElasticsearchDocumentStore
+from flask import Flask,request,render_template,jsonify
+import pandas as pd
+from haystack.pipelines import ExtractiveQAPipeline
 
 
 # Avoid Circular Import
 from app.models import User
+
+with open("AllData.csv", 'r') as file:
+  df=pd.read_csv('AllData.csv', encoding='Windows-1252')
+
+import pandas as pd
+data_json = df.to_dict("records")
+print(data_json)
+###################################################################################################
+doc=ElasticsearchDocumentStore(host="localhost",port="9200")
+doc.write_documents(data_json)
+
+
+ret=BM25Retriever(document_store=doc)
+reader = FARMReader(model_name_or_path="deepset/roberta-base-squad2", use_gpu=True,num_processes=0)
+
+
+pipe=ExtractiveQAPipeline(reader,ret)
 
 @app.route("/")
 @app.route("/index")
@@ -156,13 +178,8 @@ def chat():
     return render_template('chat.html',title="PARLA AI")
 
 def run_haystack(question):
-    #result = pipe.run(question,params={"Retriever": {"top_k": 2}, "Reader": {"top_k": 1}});
-    if question in "I want to know more about mental health disorders especially depression":
-        return "Depression is a mental health disorder characterized by persistent feelings of sadness, loss of interest or pleasure in activities, and a range of other physical and psychological symptoms. It affects how a person thinks, feels, and behaves, and can significantly interfere with their daily functioning and overall quality of life."
-    elif question in "I cried a lot because I was bullied at work. Will this affect my mental health?":
-        return "I'm sorry to hear that you've been experiencing bullying at work. Bullying can indeed have a significant impact on mental health, including increasing the risk of developing or exacerbating mental health conditions such as depression and anxiety. The emotional distress caused by bullying can have both immediate and long-term effects on your well-being."
-    elif question in "There are some voices of unknown origin that I hear in my room. Are these symptoms of mental health disorders?":
-        return "One specific condition associated with this symptom is called auditory hallucinations, which can occur in several psychiatric disorders, including schizophrenia, schizoaffective disorder, and some forms of severe depression or bipolar disorder."
-    elif question in "One specific condition associated with this symptom is called auditory hallucinations, which can occur in several psychiatric disorders, including schizophrenia, schizoaffective disorder, and some forms of severe depression or bipolar disorder.":
-        return "One specific condition associated with this symptom is called auditory hallucinations, which can occur in several psychiatric disorders, including schizophrenia, schizoaffective disorder, and some forms of severe depression or bipolar disorder."
-    else: return "No answer."
+    result = pipe.run(question,params={"Retriever": {"top_k": 2}, "Reader": {"top_k": 1}});
+    if result and len(result["answers"]) > 0:
+        answer = result["answers"][0].answer
+        return answer
+    return "No answer found."
